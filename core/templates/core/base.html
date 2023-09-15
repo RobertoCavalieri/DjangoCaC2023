@@ -10,21 +10,43 @@
 </head>
 <body>
     <header>
-        <h1>aula virutal 2.0</h1>
+        <h1>Aula Virtual 2.0</h1>
         <h2>{% block section_title %} {% endblock %}</h2>
     </header>
     <nav>
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'alumnos_listado' %}">Listado alumnos</a></li>
-            <li><a href="{% url 'alumnos_historico' %}">Historico de alumnos</a></li>
+            <li><a href="{% url 'Gestion de grupos' %}">Gestion de grupos</a></li>
+            <li><a href="{% url 'Calendario individual' 'nombre_del_integrante' %}">Calendario individual</a></li>
+            <li><a href="{% url 'Calendario de grupo' %}">Calendario de grupo</a></li>
+            <li><a href="{% url 'integrantes activos' %}">Integrantes activos</a></li>
+            <li><a href="{% url 'integrantes inactivos' %}">Integrantes inactivos</a></li>
         </ul>
     </nav>
     <main>
         {% block content %}{% endblock %}
     </main>
-    <footer>
-        {% include "core/footer.html" %}
-    </footer>
+
+
+    {% block horario_form %}
+    <div id="horario-form">
+        <h3>Cargar Horario</h3>
+        <form method="post" action="{% url 'cargar_horario' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Cargar</button>
+        </form>
+    </div>
+    {% endblock %}
+
+    {% block horario_results %}
+    <div id="horario-results">
+        <h3>Horarios Libres Compartidos</h3>
+        <!-- Mostrar los resultados de búsqueda de horarios libres compartidos aquí -->
+    </div>
+    {% endblock %}
 </body>
 </html>
+<footer>
+        {% include "core/footer.html" %}
+    </footer>

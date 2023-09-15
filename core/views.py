@@ -12,40 +12,46 @@ def index(request):
     return render(request, "core/index.html", context)
 
 
-def alumnos_listado(request):
+def gestion_grupos(request):
     # Esta data en el futuro vendrá de la base de datos
     listado = [
         'Carlos Lopez',
         'Maria Del Cerro',
+        'Jose Lopez',
     ]
 
     context = {
-        'nombre_usuario': 'Carlos Perez',
+        'nombre_usuario': 'Jose Lopez',
         'fecha': datetime.now(),
-        'es_instructor': False,
+        'es_instructor': True,
         'listado_alumnos': listado,
         'cant_inscriptos': len(listado),
     }
 
-    return render(request, 'core/alumnos_listado.html', context)
+    return render(request, 'core/calendario_grupo.html', context)
 
 
-def alumno_detalle(request, nombre_alumno):
-    return HttpResponse(
-        f"""
-        <h1>Bienvenid@ {nombre_alumno} </h1>
-        <p>Pagina Personal de usuario</p>
-        """
-    )
+def grupo_detalle(request, nombre_alumno):
+    context = {
+        'nombre_alumno': nombre_alumno,
+    }
+    return render(request, 'core/grupo_detalle.html', context)
 
 
-def alumnos_historico(request, year):
-    return HttpResponse(f'<h1>Historico de Alumnos del año: {year}</h1>')
+def calendario_grupo(request, year):
+    context = {
+        'year': year,
+    }
+    return render(request, 'core/calendario_grupo.html', context)
 
 
-def alumnos_historico_2017(request):
-    return HttpResponse('<h1>Historico de Alumnos del primer año de el Aula Virtual(2017)</h1>')
+def calendario_individual(request):
+    return render(request, 'core/cargar_horario.html')
 
 
-def alumnos_estado(request, estado):
+def integrante_estado(request, estado):
     return HttpResponse(f'Filtrar alumnos por estado: {estado}')
+
+
+def cargar_horario(request):
+    return render(request, 'core/cargar_horario.html')
