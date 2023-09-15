@@ -1,38 +1,23 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carga de Horario</title>
-    <link rel="stylesheet" href="{% static 'core/css/base.css' %}"> <!-- Ajusta la ruta de la hoja de estilos si es necesario -->
+    <title>Cargar Horario</title>
 </head>
 <body>
     <header>
-        <h1>Carga de Horario</h1>
+        <h1>Cargar Horario</h1>
     </header>
     <main>
         <form method="post">
             {% csrf_token %}
-            <label for="dia_semana">Día de la Semana:</label>
-            <select id="dia_semana" name="dia_semana">
-                <option value="lunes">Lunes</option>
-                <option value="martes">Martes</option>
-                <option value="miercoles">Miércoles</option>
-                <option value="jueves">Jueves</option>
-                <option value="viernes">Viernes</option>
-                <option value="sabado">Sábado</option>
-                <option value="domingo">Domingo</option>
-            </select><br><br>
-
-            <label for="hora_inicio">Hora de Inicio:</label>
-            <input type="time" id="hora_inicio" name="hora_inicio"><br><br>
-
-            <label for="hora_finalizacion">Hora de Finalización:</label>
-            <input type="time" id="hora_finalizacion" name="hora_finalizacion"><br><br>
-
-            <button type="submit">Cargar Horario</button>
+            {{ form.as_p }}
+            <button type="submit">Guardar Horario</button>
         </form>
     </main>
+    <footer>
+        <p>Pie de página</p>
+    </footer>
 </body>
 </html>

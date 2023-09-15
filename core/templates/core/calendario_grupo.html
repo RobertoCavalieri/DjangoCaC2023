@@ -14,13 +14,27 @@
                 <p>{{ nombre_integrante | title }}</p>
             </li>
         {% empty %}
-            <p>Sin integrantes inscritos</p>
+            <p>Sin integrantes inscriptos</p>
         {% endfor %}
     </ul>
 
+{% block horario_form %}
+    <div id="horario-form">
+        <h3>Cargar Horario</h3>
+        <form method="post" action="{% url 'cargar_horario' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Cargar</button>
+        </form>
+    </div>
+
+    {% endblock %}
     {% if cant_inscriptos > 0 %}
-        <p>Cantidad de inscritos: {{ cant_inscriptos }}</p>
+        <p>Cantidad de inscriptos: {{ cant_inscriptos }}</p>
     {% else %}
         <p>No hay inscritos</p>
     {% endif %}
 {% endblock %}
+
+
+

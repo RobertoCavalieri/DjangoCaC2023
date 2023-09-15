@@ -1,9 +1,15 @@
+# models.py
+
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Horario(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    dia_semana = models.CharField(max_length=10)  # Por ejemplo, Lunes, Martes, etc.
+    nombre = models.CharField(max_length=100)
     hora_inicio = models.TimeField()
-    hora_finalizacion = models.TimeField()
+    hora_fin = models.TimeField()
+    fecha = models.DateField()
+
+    # Otros campos que desees agregar
+
+    def __str__(self):
+        return self.nombre

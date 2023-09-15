@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from lib2to3.fixes.fix_input import context
+
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime
+
+from core.forms import HorarioForm
 
 
 def index(request):
@@ -35,13 +39,18 @@ def grupo_detalle(request, nombre_alumno):
     context = {
         'nombre_alumno': nombre_alumno,
     }
-    return render(request, 'core/grupo_detalle.html', context)
+    return render(request, 'core/grupo_detalle.html')
 
 
-def calendario_grupo(request, year):
+def calendario_grupo(request, calendario_data=None):
     context = {
-        'year': year,
+        'nombre_usuario': 'Carlos Perez',
+        'fecha': datetime.now(),
+        'es_instructor': True,
+        'calendario_data': calendario_data,
     }
+    # Resto de la lógica de la vista
+
     return render(request, 'core/calendario_grupo.html', context)
 
 
@@ -54,4 +63,13 @@ def integrante_estado(request, estado):
 
 
 def cargar_horario(request):
-    return render(request, 'core/cargar_horario.html')
+    if request.method == 'POST':
+        form = HorarioForm(request.POST)
+        if form.is_valid():
+            form.save()  # Esto guardará el horario en la base de datos
+            return redirect('index')  # Redireccionar a la página principal u otra página
+
+    else:
+        form = HorarioForm()
+
+    return render(request, 'core/cargar_horario.html', {'form': form})

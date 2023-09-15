@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula Virtual 2.0 - {% block title %}{% endblock %}</title>
+    <title>GESTOR DE GRUPOS  - {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
     {% block extra_css%}{%endblock%}
 </head>
 <body>
     <header>
-        <h1>Aula Virtual 2.0</h1>
+        <h1>Gestor de grupos</h1>
         <h2>{% block section_title %} {% endblock %}</h2>
     </header>
     <nav>
@@ -19,8 +19,6 @@
             <li><a href="{% url 'Gestion de grupos' %}">Gestion de grupos</a></li>
             <li><a href="{% url 'Calendario individual' 'nombre_del_integrante' %}">Calendario individual</a></li>
             <li><a href="{% url 'Calendario de grupo' %}">Calendario de grupo</a></li>
-            <li><a href="{% url 'integrantes activos' %}">Integrantes activos</a></li>
-            <li><a href="{% url 'integrantes inactivos' %}">Integrantes inactivos</a></li>
         </ul>
     </nav>
     <main>
@@ -28,16 +26,6 @@
     </main>
 
 
-    {% block horario_form %}
-    <div id="horario-form">
-        <h3>Cargar Horario</h3>
-        <form method="post" action="{% url 'cargar_horario' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Cargar</button>
-        </form>
-    </div>
-    {% endblock %}
 
     {% block horario_results %}
     <div id="horario-results">
