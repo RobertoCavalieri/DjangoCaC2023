@@ -9,7 +9,7 @@ from core.forms import HorarioForm
 
 def index(request):
     context = {
-        'nombre_usuario': 'Carlos Perez',
+        'nombre_usuario': 'Jose Lopez',
         'fecha': datetime.now(),
         'es_instructor': True,
     }
@@ -19,7 +19,7 @@ def index(request):
 def gestion_grupos(request):
     # Esta data en el futuro vendrá de la base de datos
     listado = [
-        'Carlos Lopez',
+        'Jose Lopez',
         'Maria Del Cerro',
         'Jose Lopez',
     ]
@@ -44,7 +44,7 @@ def grupo_detalle(request, nombre_alumno):
 
 def calendario_grupo(request, calendario_data=None):
     context = {
-        'nombre_usuario': 'Carlos Perez',
+        'nombre_usuario': 'Jose Lopez',
         'fecha': datetime.now(),
         'es_instructor': True,
         'calendario_data': calendario_data,
@@ -56,9 +56,10 @@ def calendario_grupo(request, calendario_data=None):
 
 def calendario_individual(request):
     context = {
-        'nombre_integrante': 'Jose Lopez',
+        'nombre_usuario': 'Jose Lopez',
+        'fecha': datetime.now(),
     }
-    return render(request, 'core/calendario_individual.html')
+    return render(request, 'core/calendario_individual.html', context)
 
 
 def integrante_estado(request, estado):
