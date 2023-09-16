@@ -55,7 +55,10 @@ def calendario_grupo(request, calendario_data=None):
 
 
 def calendario_individual(request):
-    return render(request, 'core/cargar_horario.html')
+    context = {
+        'nombre_integrante': 'Jose Lopez',
+    }
+    return render(request, 'core/calendario_individual.html')
 
 
 def integrante_estado(request, estado):
