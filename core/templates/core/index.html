@@ -7,16 +7,16 @@
 
 {% block title %}Pagina de bienvenida{% endblock %}
 {% block section_title %}{% endblock %}
-{% comment %} {% block content %}
+{% block content %}
     <h2>Bienvenid@ al gestor de grupos</h2>
     <p>Usuario logueado como: <b>{{ nombre_usuario }}</b></p>
 
     {% filter lower %}
     <p>Día de la fecha: {{ fecha }}</p>
     {% endfilter %}
-{% endblock %}  {% endcomment %}
+{% endblock %}  
 
-{% block content %}
+{% block content2 %}
 <div class="content">   
     <div class="content-image">
     </div> 
