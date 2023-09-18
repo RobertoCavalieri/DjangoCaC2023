@@ -24,7 +24,7 @@
     </nav>
     </header>
     <main>
-        <button id="mostrar-notificacion">Mostrar Notificación</button>
+        {% comment %} <button id="mostrar-notificacion">Mostrar Notificación</button>
 
         <div id="notificacion" class="oculto">
             <div class="contenido">
@@ -34,8 +34,9 @@
                 <p>Disculpe las molestias!</p>
 
             </div>
-        </div>
-    
+        </div> {% endcomment %}
+        {% block notif %}
+       {% endblock%}
 
        {% block content %}
        {% endblock%}
