@@ -4,9 +4,11 @@
     <link rel="stylesheet" href="{% static 'core/css/alumnos_listado.css' %}">
 {% endblock %}
 
-{% block title %}Listado Integrantes{% endblock %}
-{% block section_title %}Listado Integrantes{% endblock %}
+<main>
+
 {% block content %}
+ {% block title %}Listado Integrantes{% endblock %} 
+{% comment %}  {% block section_title %}Listado Integrantes{% endblock %}{% endcomment %}
     <h2>2023</h2>
     <ul>
         {% for nombre_integrante in listado_integrantes %}
@@ -35,6 +37,6 @@
         <p>No hay inscritos</p>
     {% endif %}
 {% endblock %}
-
+</main>
 
 
