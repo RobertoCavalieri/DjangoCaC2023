@@ -7,11 +7,22 @@
 
 {% block title %}Pagina de bienvenida{% endblock %}
 {% block section_title %}{% endblock %}
-{% block content %}
+{% comment %} {% block content %}
     <h2>Bienvenid@ al gestor de grupos</h2>
     <p>Usuario logueado como: <b>{{ nombre_usuario }}</b></p>
 
     {% filter lower %}
     <p>Día de la fecha: {{ fecha }}</p>
     {% endfilter %}
+{% endblock %}  {% endcomment %}
+
+{% block content %}
+<div class="content">   
+    <div class="content-image">
+    </div> 
+    <p>"Es una herramienta esencial en la gestión de equipos y comunidades en línea. Estas potentes plataformas permiten organizar y administrar grupos de personas de manera eficiente.Los gestores de grupos facilitan la comunicación, colaboración y coordinación entre miembros.
+    Estos sistemas versátiles permiten crear espacios de discusión, compartir recursos y mantener a todos actualizados. Ya sea en el ámbito profesional, educativo o de pasatiempos, los gestores de grupos fomentan la participación activa y la construcción de relaciones sólidas. 
+    Además, ofrecen funciones de administración que simplifican la moderación y el control de acceso. En resumen, los gestores de grupos son herramientas esenciales para conectar, colaborar y construir comunidades en la era digital."
+    </p>
+</div>
 {% endblock %}
