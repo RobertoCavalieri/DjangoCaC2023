@@ -5,9 +5,10 @@
 {% endblock %}
 
 <main>
-{% block title %}Listado Integrantes{% endblock %}
-{% block section_title %}Listado Integrantes{% endblock %}
+
 {% block content %}
+ {% block title %}Listado Integrantes{% endblock %} 
+{% comment %}  {% block section_title %}Listado Integrantes{% endblock %}{% endcomment %}
     <h2>2023</h2>
     <ul>
         {% for nombre_integrante in listado_integrantes %}
