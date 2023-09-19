@@ -16,6 +16,22 @@
 </div>
 {% endblock%}
 
+
+{% block notif %}
+
+<button id="mostrar-notificacion">Mostrar Notificación</button>
+
+<div id="notificacion" class="oculto">
+    <div class="contenido">
+        <span class="cerrar" id="cerrar-notificacion">&times;</span>
+        <h2>Sitio Construyendose!</h2>
+        <p>Proximamente mas funcionalidades.</p>
+        <p>Disculpe las molestias!</p>
+
+    </div>
+</div>
+{% endblock%}
+
 {% block title %}Pagina de bienvenida{% endblock %}
 {% block section_title %}{% endblock %}
 {% block content %}
