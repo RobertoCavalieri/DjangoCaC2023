@@ -4,36 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GESTOR DE GRUPOS  - {% block title %}{% endblock %}</title>
+    <title>GESTOR DE GRUPOS - {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
-    {% block extra_css%}{%endblock%}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <header>
-        <h1>Gestor de grupos</h1>
-        <h2>{% block section_title %} {% endblock %}</h2>
-    </header>
+
+<header>
+    <div class="icon"></div>
+    <h1>{{ "Gestor de Grupos" | upper }}</h1>
+    <h2>{% block section_title %}{% endblock %}</h2>
     <nav>
         <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'Calendario individual' %}">Calendario individual</a></li>
-            <li><a href="{% url 'Calendario de grupo' %}">Calendario de grupo</a></li>
+            <li><a class="hover-link" href="{% url 'index' %}">Home</a></li>
+            <li><a class="hover-link" href="{% url 'Calendario individual' %}">Calendario Individual</a></li>
+            <li><a class="hover-link" href="{% url 'Calendario de grupo' %}">Calendario de Grupo</a></li>
         </ul>
     </nav>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+</header>
+<main>
+    {% comment %}
+    <button id="mostrar-notificacion">Mostrar Notificación</button>
 
-
-
-    {% block horario_results %}
-    <div id="horario-results">
-        <h3>Horarios Libres Compartidos</h3>
-        <!-- Mostrar los resultados de búsqueda de horarios libres compartidos aquí -->
+    <div id="notificacion" class="oculto">
+        <div class="contenido">
+            <span class="cerrar" id="cerrar-notificacion">&times;</span>
+            <h2>Sitio Construyendose!</h2>
+            <p>Proximamente mas funcionalidades.</p>
+            <p>Disculpe las molestias!</p>
+        </div>
     </div>
+    {% endcomment %}
+
+    {% block notif %}
     {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block content2 %}
+    {% endblock %}
+</main>
+
+{% block horario_results %}
+<div id="horario-results">
+    <h3>Horarios Libres Compartidos</h3>
+</div>
+{% endblock %}
+<footer>
+    {% include "core/footer.html" %}
+</footer>
+
+<script src="{% static 'core/js/scripts.js' %}"></script>
 </body>
 </html>
-<footer>
-        {% include "core/footer.html" %}
-    </footer>

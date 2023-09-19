@@ -1,7 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    text-decoration: none;
+}
+html{
+    font-family: 'Lato', sans-serif;
+}
+h1{
+    font-size: 24px;
+}
 header {
-    background-color: gray;
+    background-color: rgba(13, 13, 13, 0.932);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    margin: 0 auto;
+    color: rgb(234, 231, 231);
+    padding:0 20px;
+}
+
+header .icon{
+    background-image: url('../img/p1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color:white;
+    width:80px;
+    height: 70px;
+    font-size: 80px;
+    border-radius: 50%; background-color: rgba(247, 249, 251, 0.27);
+}
+
+
+#mostrar-notificacion {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 8px;
+    font-size: 14px;
+    cursor: pointer;
+
+}
+
+#notificacion {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f1f1f1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.contenido {
+    text-align: center;
+}
+
+.cerrar {
+    float: right;
+    cursor: pointer;
+}
+
+
+
+nav{
+    display: flex;
+}
+ul {
+    list-style: none;
+    display: flex;
+}
+li{
+    margin-right: 10px;
+}
+.hover-link{
+    color: rgb(234, 231, 231);
+
+
+}
+.hover-link:hover{
+    text-decoration: underline;
+    color: #41abff;
+
+}
+
+.content{
+    padding: 20px 0;
+    width:90%;
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+.content-image{
+    width:200px;
+    height: 200px;
+    background-image: url('../img/personas.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    margin: 0 auto 0 10px;
+    opacity:0.8;
+    border-radius: 20px;
 }
 
 footer {
-    background-color: gray;
+    background-color: rgb(97, 94, 94);
+}
+footer p{
+    color: rgb(240, 248, 255);
+    text-align: center;
+    height:30px;
+    padding-top:8px;
+
 }

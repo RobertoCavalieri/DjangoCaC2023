@@ -1,9 +1,20 @@
 {% extends "core/base.html" %}
 {% load static %}
 
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
-{% endblock %}
+{% block notif %}
+
+<button id="mostrar-notificacion">Mostrar Notificación</button>
+
+<div id="notificacion" class="oculto">
+    <div class="contenido">
+        <span class="cerrar" id="cerrar-notificacion">&times;</span>
+        <h2>Sitio Construyendose!</h2>
+        <p>Proximamente mas funcionalidades.</p>
+        <p>Disculpe las molestias!</p>
+
+    </div>
+</div>
+{% endblock%}
 
 {% block title %}Pagina de bienvenida{% endblock %}
 {% block section_title %}{% endblock %}
@@ -14,4 +25,15 @@
     {% filter lower %}
     <p>Día de la fecha: {{ fecha }}</p>
     {% endfilter %}
+{% endblock %}  
+
+{% block content2 %}
+<div class="content">   
+    <div class="content-image">
+    </div> 
+    <p>"Es una herramienta esencial en la gestión de equipos y comunidades en línea. Estas potentes plataformas permiten organizar y administrar grupos de personas de manera eficiente.Los gestores de grupos facilitan la comunicación, colaboración y coordinación entre miembros.
+    Estos sistemas versátiles permiten crear espacios de discusión, compartir recursos y mantener a todos actualizados. Ya sea en el ámbito profesional, educativo o de pasatiempos, los gestores de grupos fomentan la participación activa y la construcción de relaciones sólidas. 
+    Además, ofrecen funciones de administración que simplifican la moderación y el control de acceso. En resumen, los gestores de grupos son herramientas esenciales para conectar, colaborar y construir comunidades en la era digital."
+    </p>
+</div>
 {% endblock %}

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,4 +20,20 @@
         <p>Pie de página</p>
     </footer>
 </body>
-</html>
+</html> {% endcomment %}
+
+{% extends 'core/base.html' %}
+
+{% block content %}
+<header>
+    <h1>Cargar Horario</h1>
+</header>
+<main>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Horario</button>
+    </form>
+</main>
+
+{% endblock %}
