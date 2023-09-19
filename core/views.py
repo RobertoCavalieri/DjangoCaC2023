@@ -1,4 +1,3 @@
-from lib2to3.fixes.fix_input import context
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -49,7 +48,6 @@ def calendario_grupo(request, calendario_data=None):
         'es_instructor': True,
         'calendario_data': calendario_data,
     }
-    # Resto de la lógica de la vista
 
     return render(request, 'core/calendario_grupo.html', context)
 
@@ -70,8 +68,8 @@ def cargar_horario(request):
     if request.method == 'POST':
         form = HorarioForm(request.POST)
         if form.is_valid():
-            form.save()  # Esto guardará el horario en la base de datos
-            return redirect('index')  # Redireccionar a la página principal u otra página
+            form.save()
+            return redirect('index')
 
     else:
         form = HorarioForm()
