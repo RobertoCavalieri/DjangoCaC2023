@@ -32,7 +32,7 @@ header .icon{
     width:80px;
     height: 70px;
     font-size: 80px;
-    border-radius: 50%; background-color: rgba(247, 249, 251, 0.27);
+    border-radius: 50%; background-color: rgba(251, 249, 247, 0.269);
 }
 
 
@@ -53,7 +53,7 @@ header .icon{
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #f1f1f1;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 1;
     max-width: 400px;
     padding: 20px;

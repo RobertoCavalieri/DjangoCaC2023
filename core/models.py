@@ -9,7 +9,5 @@ class Horario(models.Model):
     hora_fin = models.TimeField()
     fecha = models.DateField()
 
-    # Otros campos que desees agregar
-
     def __str__(self):
         return self.nombre
