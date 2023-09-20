@@ -16,7 +16,6 @@ def index(request):
 
 
 def gestion_grupos(request):
-    # Esta data en el futuro vendrá de la base de datos
     listado = [
         'Jose Lopez',
         'Maria Del Cerro',
@@ -58,6 +57,7 @@ def calendario_individual(request):
         'fecha': datetime.now(),
     }
     return render(request, 'core/calendario_individual.html', context)
+
 
 
 def integrante_estado(request, estado):
