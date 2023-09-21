@@ -8,10 +8,10 @@
 html{
     font-family: 'Lato', sans-serif;
 }
-h1{
+.header h1{
     font-size: 24px;
 }
-header {
+.header {
     background-color: rgba(13, 13, 13, 0.932);
 
     display: flex;
@@ -23,7 +23,7 @@ header {
     padding:0 20px;
 }
 
-header .icon{
+.header .icon{
     background-image: url('../img/p1.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -70,14 +70,14 @@ header .icon{
 
 
 
-nav{
+.nav{
     display: flex;
 }
-ul {
+.nav ul {
     list-style: none;
     display: flex;
 }
-li{
+.nav li{
     margin-right: 10px;
 }
 .hover-link{
