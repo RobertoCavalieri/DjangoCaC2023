@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+
+{% block extra_css %} 
+<link rel="stylesheet" href="{% static 'core/css/contacto.css' %}">
+{% endblock %} 
+
+
+<main>
+{% block title%}Contactanos{%endblock%}
+
+
+<div class="contacto">
+    {% block section_title%}Contactanos{%endblock%}
+    {%block content%}
+    <form method="post" action="{% url 'contacto' %}">
+        {% csrf_token %}
+        {% comment %} {{ contacto_form.as_p }} {% endcomment %}
+        {{ contacto_form}}
+
+        <input class="input_submit" type="submit">
+    </form>    
+{%endblock%}
+</div>
+
+</main>

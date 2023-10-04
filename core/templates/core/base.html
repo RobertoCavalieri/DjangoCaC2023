@@ -6,25 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GESTOR DE GRUPOS - {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'core/css/bases.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     {% block extra_css %}{% endblock %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
 
 <header class="header">
     <div class="icon"></div>
     <h1>{{ "Gestor de Grupos" | upper }}</h1>
-    <h2>{% block section_title %}{% endblock %}</h2>
+
     <nav class="nav">
         <ul>
             <li><a class="hover-link" href="{% url 'index' %}">Home</a></li>
             <li><a class="hover-link" href="{% url 'Calendario individual' %}">Calendario Individual</a></li>
             <li><a class="hover-link" href="{% url 'Calendario de grupo' %}">Calendario de Grupo</a></li>
+            <li><a class="hover-link" href="{% url 'contacto'%}">Contacto</a></li>
         </ul>
     </nav>
 </header>
 <main>
-
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if messsage.tags %} class="{{message.tags}}"{% endif %}>{{message}}
+            </li>
+        {% endfor %}
+    </ul>   
+    {% endif %}           
+    
+    <h2>{% block section_title %}{% endblock %}</h2>
     {% block notif %}
     {% endblock %}
 
