@@ -1,9 +1,12 @@
-
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime
+from django.urls import reverse
+from django.contrib import messages
 
 from core.forms import HorarioForm
+
+from .forms import ContactoForm
 
 
 def index(request):
@@ -13,6 +16,22 @@ def index(request):
         'es_instructor': True,
     }
     return render(request, "core/index.html", context)
+
+
+def contacto(request):
+    if request.method=="POST":
+        formulario= ContactoForm(request.POST)
+        
+        if formulario.is_valid():
+            messages.info(request,'Formulario enviado con exito')
+            return redirect(reverse('contacto'))
+    else: #GET
+        formulario= ContactoForm()
+            
+    context={
+        'contacto_form': formulario
+    }
+    return render(request, "core/contacto.html", context)
 
 
 def gestion_grupos(request):
