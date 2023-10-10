@@ -7,6 +7,7 @@ from django.contrib import messages
 from core.forms import HorarioForm
 
 from .forms import ContactoForm
+from .models import Persona
 
 
 def index(request):
@@ -17,13 +18,34 @@ def index(request):
     }
     return render(request, "core/index.html", context)
 
+#  context = {
+#         'nombre_usuario': 'Jose Lopez',
+#         'fecha': datetime.now(),
+#         'es_instructor': True,
+#         'calendario_data': calendario_data,
+#     }
+
+#     return render(request, 'core/calendario_grupo.html', context)
 
 def contacto(request):
     if request.method=="POST":
         formulario= ContactoForm(request.POST)
         
         if formulario.is_valid():
-            messages.info(request,'Formulario enviado con exito')
+            # p1=Persona(nombre="Carlos", apellido="Lopez")
+            nombre = formulario.cleaned_data['nombre']
+            apellido = formulario.cleaned_data['apellido']
+            email = formulario.cleaned_data['mail']
+            telefono = formulario.cleaned_data['telefono']
+            mensaje = formulario.cleaned_data['Mensaje']
+            
+            p1 = Persona(nombre=nombre, apellido=apellido, email=email, telefono=telefono, mensaje=mensaje)
+            print(nombre,apellido)
+            p1.save()            
+            mensaje_exito = f'{nombre} {apellido} gracias por contactarnos, nos comunicaremos a la brevedad.'         
+            
+            
+            messages.info(request, mensaje_exito)
             return redirect(reverse('contacto'))
     else: #GET
         formulario= ContactoForm()
@@ -34,12 +56,16 @@ def contacto(request):
     return render(request, "core/contacto.html", context)
 
 
+
+
 def gestion_grupos(request):
-    listado = [
-        'Jose Lopez',
-        'Maria Del Cerro',
-        'Jose Lopez',
-    ]
+  #  listado = [
+   #     'Jose Lopez',
+    #    'Maria Del Cerro',
+     #   'Jose Lopez',
+    #]
+    
+    listado=Persona.objects.all()
 
     context = {
         'nombre_usuario': 'Jose Lopez',

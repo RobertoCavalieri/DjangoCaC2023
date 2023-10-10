@@ -120,14 +120,15 @@ __pypackages__/
 # *.sage.py
 
 # Environments
-.env
+
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
-
+mientornovirtual\
+env/
 
 # Spyder project settings
 # .spyderproject
