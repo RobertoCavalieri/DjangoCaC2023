@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/evento.css' %}">
+{% endblock%}
+
+
+{% block title %}Evento{% endblock %}
+{% block section_title %} {{ titulo_evento }} {% endblock %}
+
+{% block content %}
+    <form method="post" action="{% url 'evento' %}">
+        {% csrf_token %}
+        {{ evento_form.as_div }}
+        <input type="submit">
+    </form>
+{% endblock %}
+
+{% block extra_script %}
+    <script src="{% static 'core/js/evento.js' %}"></script>
+{% endblock %}

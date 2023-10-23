@@ -11,3 +11,17 @@ class Horario(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class Persona(models.Model):
+    nombre = models.CharField(max_length=50, verbose_name='Nombre')
+    apellido = models.CharField(max_length=50, verbose_name='Apellido')
+    mail = models.EmailField(max_length=150, verbose_name='Email')
+
+
+class Evento(models.Model):
+    nombre = models.CharField(max_length=50, verbose_name='Nombre')
+    descripcion = models.TextField(verbose_name='Descripcion')
+    inicio = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='Inicio')
+    fin = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='Fin')
+    participantes = models.ManyToManyField(Persona)

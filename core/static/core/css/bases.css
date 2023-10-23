@@ -124,3 +124,8 @@ footer p{
     padding-top:8px;
 
 }
+
+.messages {
+    border: 3px solid black;
+    padding: 25px;
+}

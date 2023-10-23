@@ -1,9 +1,16 @@
 
+from django.views.generic import ListView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from datetime import datetime
+from django.contrib import messages
 
 from core.forms import HorarioForm
+from django.urls import reverse
+from datetime import datetime
+
+from core.forms import AltaEventoForm
+from core.forms import EventoForm
+from core.models import Evento
 
 
 def index(request):
@@ -12,7 +19,31 @@ def index(request):
         'fecha': datetime.now(),
         'es_instructor': True,
     }
-    return render(request, "core/index.html", context)
+    return render(request, 'core/index.html', context)
+
+def evento(request):
+    if request.method == 'POST':
+        # Instanciamos un formulario con datos
+        formulario = EventoForm(request.POST)
+                # Validarlo
+        if formulario.is_valid():
+            # Dar de alta la info
+            nuevo_evento = Evento(
+                nombre = formulario.cleaned_data['nombre'],
+                descripcion = formulario.cleaned_data['descripcion'],
+                inicio = formulario.cleaned_data['fecha_inicio'],
+                fin = formulario.cleaned_data['fecha_fin'],
+            )
+            nuevo_evento.save()
+            messages.info(request, "Evento cargado con éxito")
+            return redirect(reverse('calendario_individual'))
+    else:   #GET
+        formulario = EventoForm()
+
+    context = {
+        'evento_form': formulario
+    }
+    return render(request, 'core/evento.html', context)
 
 
 def gestion_grupos(request):
@@ -51,13 +82,23 @@ def calendario_grupo(request, calendario_data=None):
     return render(request, 'core/calendario_grupo.html', context)
 
 
-def calendario_individual(request):
-    context = {
-        'nombre_usuario': 'Jose Lopez',
-        'fecha': datetime.now(),
-    }
-    return render(request, 'core/calendario_individual.html', context)
+# def calendario_individual(request):
 
+#     if request.method == 'POST':
+#         # Instanciamos un formulario con datos
+#         formulario = AltaEventoForm(request.POST)
+#                 # Validarlo
+#         if formulario.is_valid():
+#             # Dar de alta la info
+#             messages.info(request, "Evento cargado con éxito")
+#             return redirect(reverse('index'))
+#     else:   #GET
+#         formulario = AltaEventoForm()
+
+#     context = {
+#         'add_event_form': formulario
+#     }
+#     return render(request, 'core/calendario_individual.html', context)
 
 
 def integrante_estado(request, estado):
@@ -75,3 +116,11 @@ def cargar_horario(request):
         form = HorarioForm()
 
     return render(request, 'core/cargar_horario.html', {'form': form})
+
+
+
+class EventoListView(ListView):
+    model = Evento
+    context_object_name = 'event_list'
+    template_name = 'core/calendario_individual.html'
+
