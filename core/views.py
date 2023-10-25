@@ -1,5 +1,5 @@
 
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
@@ -11,6 +11,7 @@ from datetime import datetime
 from core.forms import AltaEventoForm
 from core.forms import EventoForm
 from core.models import Evento
+from core.models import Persona
 
 
 def index(request):
@@ -25,6 +26,7 @@ def evento(request):
     if request.method == 'POST':
         # Instanciamos un formulario con datos
         formulario = EventoForm(request.POST)
+
                 # Validarlo
         if formulario.is_valid():
             # Dar de alta la info
@@ -32,9 +34,11 @@ def evento(request):
                 nombre = formulario.cleaned_data['nombre'],
                 descripcion = formulario.cleaned_data['descripcion'],
                 inicio = formulario.cleaned_data['fecha_inicio'],
-                fin = formulario.cleaned_data['fecha_fin'],
+                fin = formulario.cleaned_data['fecha_fin']
+                # participantes=formulario.cleaned_data['participantes'] #Así no funca.
             )
             nuevo_evento.save()
+            nuevo_evento.participantes.set(formulario.cleaned_data['participantes'])
             messages.info(request, "Evento cargado con éxito")
             return redirect(reverse('calendario_individual'))
     else:   #GET
@@ -124,3 +128,15 @@ class EventoListView(ListView):
     context_object_name = 'event_list'
     template_name = 'core/calendario_individual.html'
 
+
+class PersonaCreateView(CreateView):
+    model = Persona
+    template_name = 'core/alta_persona.html'
+    success_url = 'listado'
+    fields = '__all__'
+
+
+class PersonaListView(ListView):
+    model = Persona
+    context_object_name = 'listado_personas'
+    template_name = 'core/personas_listado.html'

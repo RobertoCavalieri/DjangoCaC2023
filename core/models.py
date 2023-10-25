@@ -18,6 +18,12 @@ class Persona(models.Model):
     apellido = models.CharField(max_length=50, verbose_name='Apellido')
     mail = models.EmailField(max_length=150, verbose_name='Email')
 
+    def nombre_completo(self):
+        return f"{self.nombre} {self.apellido}"
+
+    def __str__(self):
+        return self.nombre_completo()
+
 
 class Evento(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre')

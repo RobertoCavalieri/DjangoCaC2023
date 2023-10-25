@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/alta_persona.css' %}">
+{% endblock%}
+
+
+{% block title %}Alta Persona{% endblock %}
+{% block section_title %} {% endblock %}
+
+{% block content %}
+    <form method="post" action="{% url 'alta_persona' %}">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <input type="submit">
+    </form>
+{% endblock %}
+
+{% block extra_script %}
+    <script src="{% static 'core/js/alta_persona.js' %}"></script>
+{% endblock %}

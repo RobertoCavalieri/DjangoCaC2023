@@ -4,6 +4,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from datetime import datetime
 from .models import Horario
+from .models import Persona
 
 # Opciones de los desplegables.
 OPCIONES_COLOR = [('fc-bg-default', 'default'), ('fc-bg-blue', 'azul'), (
@@ -26,10 +27,10 @@ class AltaEventoForm(forms.Form):
         attrs={'class': 'datetimepicker form-control'}), required=True)
     edesc = forms.CharField(label='Descripción de la tarea', widget=forms.Textarea(
         attrs={'class': 'form-control'}))
-    ecolor = forms.ChoiceField(label='Color', choices=OPCIONES_COLOR, widget=forms.Select(
-        attrs={'class': 'form-control'}))
-    eicon = forms.ChoiceField(label='Icono', choices=OPCIONES_ICONO, widget=forms.Select(
-        attrs={'class': 'form-control'}))
+#     ecolor = forms.ChoiceField(label='Color', choices=OPCIONES_COLOR, widget=forms.Select(
+#         attrs={'class': 'form-control'}))
+#     eicon = forms.ChoiceField(label='Icono', choices=OPCIONES_ICONO, widget=forms.Select(
+# #         attrs={'class': 'form-control'}))
 
     def clean_edate(self):
         # validamos que la fecha tenga un formáto válido.
@@ -53,7 +54,15 @@ class EventoForm(forms.Form):
     fecha_fin = forms.DateTimeField(input_formats=['%Y-%m-%dT%H:%M'], widget=forms.DateTimeInput(
         attrs={'type': 'datetime-local', 'class': 'form-control'}, format='%Y-%m-%dT%H:%M'))
     descripcion = forms.CharField(label='Descripción', widget=forms.Textarea())
+    participantes = forms.ModelMultipleChoiceField(queryset=Persona.objects.all())
+
     # color = forms.ChoiceField(
     #     label='Color', choices=OPCIONES_COLOR, widget=forms.Select())
     # icono = forms.ChoiceField(
     #     label='Icono', choices=OPCIONES_ICONO, widget=forms.Select())
+
+
+class PersonaForm(forms.ModelForm):
+    class Meta:
+        model = Persona
+        fields = '__all__'
