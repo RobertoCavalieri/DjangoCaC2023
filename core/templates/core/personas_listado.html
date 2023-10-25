@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/personas_listado.css' %}">
+{% endblock%}
+
+
+{% block title %}Listado de Personas{% endblock %}
+{% block section_title %} {% endblock %}
+
+{% block content %}
+<ul>
+    {% for persona in listado_personas %}
+        <li>
+            <p>{{ persona.nombre_completo | title }}</p>
+            <p>{{ persona.email}}</p>
+        </li>
+    {% empty %}
+        <p>Sin docentes registrados</p>
+    {% endfor %}
+</ul>
+
+    {% if listado_personas.count > 0 %}
+        <p>cantidad de personas registrados: {{listado_personas.count}}</p>
+    {% else %}
+        <p>No hay personas registrados</p>
+    {% endif %}
+{% endblock %}
+

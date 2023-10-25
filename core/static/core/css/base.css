@@ -100,8 +100,8 @@ html{
     font-weight: 600;
     font-size: 18px;
     display: flex;
-  flex-direction: row-reverse;
-  align-items: flex-start;
+    flex-direction: row-reverse;
+    align-items: flex-start;
 }
 .content-image{
     width:200px;
@@ -127,3 +127,7 @@ footer p{
 
 }
 
+.messages {
+    border: 3px solid black;
+    padding: 25px;
+}
