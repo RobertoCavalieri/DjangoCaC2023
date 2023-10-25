@@ -10,4 +10,7 @@ urlpatterns = [
     path('grupos/detalle', views.EventoListView.as_view(), name='calendario_individual'),
     path('grupos/calendario', views.calendario_grupo, name='Calendario de grupo'),
     path('cargar_horario', views.cargar_horario, name='cargar_horario'),
+
+    path('contacto/', views.contacto, name='contacto'),
+
 ]

@@ -1,8 +1,8 @@
-
 from django.views.generic import ListView, CreateView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.urls import reverse
 
 from core.forms import HorarioForm
 from django.urls import reverse
@@ -12,6 +12,8 @@ from core.forms import AltaEventoForm
 from core.forms import EventoForm
 from core.models import Evento
 from core.models import Persona
+
+from .forms import ContactoForm
 
 
 def index(request):
@@ -48,6 +50,38 @@ def evento(request):
         'evento_form': formulario
     }
     return render(request, 'core/evento.html', context)
+
+
+def contacto(request):
+    if request.method=="POST":
+        formulario= ContactoForm(request.POST)
+
+        if formulario.is_valid():
+            messages.info(request,'Formulario enviado con exito')
+            return redirect(reverse('contacto'))
+    else: #GET
+        formulario= ContactoForm()
+
+    context={
+        'contacto_form': formulario
+    }
+    return render(request, "core/contacto.html", context)
+
+
+def contacto(request):
+    if request.method=="POST":
+        formulario= ContactoForm(request.POST)
+
+        if formulario.is_valid():
+            messages.info(request,'Formulario enviado con exito')
+            return redirect(reverse('contacto'))
+    else: #GET
+        formulario= ContactoForm()
+
+    context={
+        'contacto_form': formulario
+    }
+    return render(request, "core/contacto.html", context)
 
 
 def gestion_grupos(request):

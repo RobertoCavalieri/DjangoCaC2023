@@ -8,9 +8,11 @@
 html{
     font-family: 'Lato', sans-serif;
 }
+
 .header h1{
     font-size: 24px;
 }
+
 .header {
     background-color: rgba(13, 13, 13, 0.932);
 
@@ -98,8 +100,8 @@ html{
     font-weight: 600;
     font-size: 18px;
     display: flex;
-  flex-direction: row-reverse;
-  align-items: flex-start;
+    flex-direction: row-reverse;
+    align-items: flex-start;
 }
 .content-image{
     width:200px;
