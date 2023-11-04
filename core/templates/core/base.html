@@ -29,11 +29,11 @@
         <nav class="nav">
             <ul>
                 <li><a class="hover-link" href="{% url 'index' %}">Home</a></li>
-                <li><a class="hover-link" href="{% url 'evento' %}">Alta Evento</a></li>
-                <li><a class="hover-link" href="{% url 'alta_persona' %}">Alta Persona</a></li>
+                <li><a class="hover-link" href="{% url 'eventos_alta' %}">Alta Evento</a></li>
+                <li><a class="hover-link" href="{% url 'personas_alta' %}">Alta Persona</a></li>
                 <li><a class="hover-link" href="{% url 'personas_listado' %}">Listado Personas</a></li>
                 <li><a class="hover-link" href="{% url 'calendario_individual' %}">Calendario Individual</a></li>
-                <li><a class="hover-link" href="{% url 'Calendario de grupo' %}">Calendario de Grupo</a></li>
+                {% comment %} <li><a class="hover-link" href="{% url 'Calendario de grupo' %}">Calendario de Grupo</a></li> {% endcomment %}
             </ul>
         </nav>
     </header>
@@ -58,8 +58,8 @@
         {% include "core/footer.html" %}
     </footer>
 
-    <script src="{% static 'core/js/scripts.js' %}"></script>
-    {% block extra_script %}{% endblock %}
+    {% block extra_script %}
+    {% endblock %}
 </body>
 
 </html>

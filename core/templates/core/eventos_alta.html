@@ -9,7 +9,7 @@
 {% block section_title %} {{ titulo_evento }} {% endblock %}
 
 {% block content %}
-    <form method="post" action="{% url 'evento' %}">
+    <form method="post" action="{% url 'eventos_alta' %}">
         {% csrf_token %}
         {{ evento_form.as_div }}
         <input type="submit">
