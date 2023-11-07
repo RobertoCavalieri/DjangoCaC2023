@@ -31,3 +31,11 @@ class Evento(models.Model):
     inicio = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='Inicio')
     fin = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='Fin')
     participantes = models.ManyToManyField(Persona)
+
+
+class Grupo(models.Model):
+    nombre = models.CharField(max_length=100)
+    miembros = models.ManyToManyField('core.Persona', related_name='grupos')
+
+    def __str__(self):
+        return self.nombre
