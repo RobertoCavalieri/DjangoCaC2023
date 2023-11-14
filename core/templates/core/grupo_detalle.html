@@ -1,21 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Integrante</title>
-</head>
-<body>
-    <header>
-        <h1>Detalles del Integrante</h1>
-    </header>
-    <main>
-        <h2>Detalles del integrante:</h2>
-        <p>Nombre: {{ nombre_integrante }}</p>
-        <!-- Puedes agregar más detalles del integrante aquí si lo deseas -->
-    </main>
-    <footer>
-        <p>Pie de página</p>
-    </footer>
-</body>
-</html>
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/grupos_detalle.css' %}">
+{% endblock%}
+
+
+{% block title %}Detalle de grupos{% endblock %}
+{% block section_title %} Detalle Grupo {% endblock %}
+{% block content %}
+<h3> Nombre del grupo: {{ nombre_grupo }} </h3>
+{% endblock %}
+
+{% block content2 %}
+<h4>Lista de Integrantes:</h4>
+<ul>
+    {% for integrante in lista_integrantes %}
+        <li>
+            <p>{{ integrante }}</p>
+        </li>
+    {% empty %}
+        <p>Grupo vacío</p>
+    {% endfor %}
+</ul>
+
+    {% if lista_integrantes.count > 0 %}
+        <p>Cantidad integrantes del grupo: {{lista_integrantes.count}}</p>
+    {% else %}
+        <p>Grupo sin integrantes registrados</p>
+    {% endif %}
+{% endblock %}
+
