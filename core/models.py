@@ -14,7 +14,7 @@ class Horario(models.Model):
 
 
 class Persona(models.Model):
-    nombre = models.CharField(max_length=50, verbose_name='Nombre')
+    nombre = models.CharField(max_length=50, verbose_name='Nombre', )
     apellido = models.CharField(max_length=50, verbose_name='Apellido')
     mail = models.EmailField(max_length=150, verbose_name='Email')
 
@@ -25,17 +25,22 @@ class Persona(models.Model):
         return self.nombre_completo()
 
 
+class Grupo(models.Model):
+    nombre = models.CharField(max_length=150, verbose_name='Nombre')
+    miembros = models.ManyToManyField(Persona, related_name='grupos')
+
+    def __str__(self):
+        return f"{self.nombre}"
+
+
 class Evento(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     descripcion = models.TextField(verbose_name='Descripcion')
     inicio = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='Inicio')
     fin = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='Fin')
-    participantes = models.ManyToManyField(Persona)
-
-
-class Grupo(models.Model):
-    nombre = models.CharField(max_length=100)
-    miembros = models.ManyToManyField('core.Persona', related_name='grupos')
+    organizador = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    participantes = models.ManyToManyField(Grupo)
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre} {self.inicio}"
+

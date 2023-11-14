@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/alta_grupo.css' %}">
+{% endblock%}
+
+
+{% block title %}Alta grupo{% endblock %}
+{% block section_title %} {% endblock %}
+
+{% block content %}
+    <form method="post" action="{% url 'grupos_alta' %}">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <input type="submit">
+    </form>
+{% endblock %}
+
+{% block extra_script %}
+    <script src="{% static 'core/js/alta_grupo.js' %}"></script>
+{% endblock %}

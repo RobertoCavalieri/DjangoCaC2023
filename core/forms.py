@@ -4,6 +4,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import Horario
 from .models import Persona
+from .models import Grupo
 
 
 class HorarioForm(forms.ModelForm):
@@ -55,7 +56,7 @@ class EventoForm(forms.Form):
     fecha_fin = forms.DateTimeField(input_formats=['%Y-%m-%dT%H:%M'], widget=forms.DateTimeInput(
         attrs={'type': 'datetime-local', 'class': 'form-control'}, format='%Y-%m-%dT%H:%M'))
     descripcion = forms.CharField(label='Descripción', widget=forms.Textarea())
-    participantes = forms.ModelMultipleChoiceField(queryset=Persona.objects.all())
+    participantes = forms.ModelMultipleChoiceField(queryset=Grupo.objects.all())
 
 
 class PersonaForm(forms.ModelForm):

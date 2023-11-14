@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/grupos_listado.css' %}">
+{% endblock%}
+
+
+{% block title %}Listado de grupos{% endblock %}
+{% block section_title %} {% endblock %}
+
+{% block content %}
+<ul>
+    {% for grupo in listado_grupos %}
+        <li>
+            {% comment %} <p><a class="hover-link" href="{% url 'grupos_detalle/grupo.id' %}">{{ grupo.nombre | title }}</a></p> {% endcomment %}
+            <p>{{ grupo.nombre | title }}</p>
+        </li>
+    {% empty %}
+        <p>Sin grupos registrados</p>
+    {% endfor %}
+</ul>
+
+    {% if listado_grupos.count > 0 %}
+        <p>cantidad de grupos registrados: {{listado_grupos.count}}</p>
+    {% else %}
+        <p>No hay grupos registrados</p>
+    {% endif %}
+{% endblock %}
+

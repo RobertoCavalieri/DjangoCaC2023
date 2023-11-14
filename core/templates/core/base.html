@@ -33,7 +33,10 @@
                 <li><a class="hover-link" href="{% url 'personas_alta' %}">Alta Persona</a></li>
                 <li><a class="hover-link" href="{% url 'personas_listado' %}">Listado Personas</a></li>
                 <li><a class="hover-link" href="{% url 'calendario_individual' %}">Calendario Individual</a></li>
+                <li><a class="hover-link" href="{% url 'grupos_alta' %}">Alta Nuevo Grupo</a></li>
+                <li><a class="hover-link" href="{% url 'grupos_listado' %}">Listado Grupos</a></li>
                 {% comment %} <li><a class="hover-link" href="{% url 'Calendario de grupo' %}">Calendario de Grupo</a></li> {% endcomment %}
+                <li><a class="hover-link" href="{% url 'contacto' %}">Contáctanos</a></li>
             </ul>
         </nav>
     </header>
@@ -51,7 +54,7 @@
 
     {% block horario_results %}
     <div id="horario-results">
-        <h3>Horarios Libres Compartidos</h3>
+        {% comment %} <h3>Horarios Libres Compartidos</h3> {% endcomment %}
     </div>
     {% endblock %}
     <footer>
