@@ -73,11 +73,15 @@ html{
 
 
 .nav{
-    display: flex;
+    background-color: rgba(13, 13, 13, 0.932);
 }
 .nav ul {
     list-style: none;
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style-type: none;
+    padding: 5px;
 }
 .nav li{
     margin-right: 10px;

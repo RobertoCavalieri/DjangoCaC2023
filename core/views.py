@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse
 from django.views.generic import ListView, CreateView
 
@@ -38,7 +40,7 @@ def contacto(request):
     }
     return render(request, "core/contacto.html", context)
 
-
+@login_required
 def alta_evento(request):
     if request.method == 'POST':
         # Instanciamos un formulario con datos
@@ -68,38 +70,40 @@ def alta_evento(request):
     return render(request, 'core/eventos_alta.html', context)
 
 
-class EventoListView(ListView):
+class EventoListView(LoginRequiredMixin, ListView):
     model = Evento
     context_object_name = 'event_list'
     template_name = 'core/calendario_individual.html'
 
 
-class PersonaCreateView(CreateView):
+class PersonaCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'core.add_persona'
     model = Persona
     template_name = 'core/alta_persona.html'
     success_url = 'listado'
     fields = '__all__'
 
 
-class PersonaListView(ListView):
+class PersonaListView(LoginRequiredMixin, ListView):
     model = Persona
     context_object_name = 'listado_personas'
     template_name = 'core/personas_listado.html'
 
 
-class GrupoCreateView(CreateView):
+class GrupoCreateView(LoginRequiredMixin, CreateView):
     model = Grupo
     template_name = 'core/alta_grupo.html'
     success_url = 'listado'
     fields = '__all__'
 
 
-class GrupoListView(ListView):
+class GrupoListView(LoginRequiredMixin, ListView):
     model = Grupo
     context_object_name = 'listado_grupos'
     template_name = 'core/grupos_listado.html'
 
 
+@login_required
 def grupo_detalle(request,id_grupo):
     print(id_grupo)
     grupo = Grupo.objects.filter(id = int(id_grupo))
