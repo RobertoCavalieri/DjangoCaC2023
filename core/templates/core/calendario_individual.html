@@ -56,6 +56,9 @@
                         day:      'Dia',
                         list:     'Lista'
                     },
+                    navLinks: true, // can click day/week names to navigate views
+                    dayMaxEvents: true, // allow "more" link when too many events
+                    //initialView: 'listDay',
                     events: [
                         {% for evento in event_list %}
                             {

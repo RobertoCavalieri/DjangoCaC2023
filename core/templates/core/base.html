@@ -14,14 +14,6 @@
 </head>
 
 <body>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
     <header class="header">
         <div class="icon"></div>
         <div class="title">
@@ -52,6 +44,8 @@
                 <li><a class="hover-link" href="{% url 'grupos_alta' %}">Alta Nuevo Grupo</a></li>
                 <li><a class="hover-link" href="{% url 'grupos_listado' %}">Listado Grupos</a></li>
                 {% comment %} <li><a class="hover-link" href="{% url 'Calendario de grupo' %}">Calendario de Grupo</a></li> {% endcomment %}
+            {% else %}
+                <li><a class="hover-link" href="{% url 'personas_alta' %}">Registrate</a></li>
             {% endif %}
             <li><a class="hover-link" href="{% url 'contacto' %}">Contáctanos</a></li>
         </ul>
@@ -59,6 +53,13 @@
     <main>
 
         {% block notif %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         {% endblock %}
 
         {% block content %}

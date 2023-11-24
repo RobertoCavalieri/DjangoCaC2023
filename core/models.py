@@ -22,6 +22,8 @@ class Persona(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre', )
     apellido = models.CharField(max_length=50, verbose_name='Apellido')
     mail = models.EmailField(max_length=150, verbose_name='Email')
+    telefono = models.CharField(max_length=50, verbose_name='Teléfono', blank=True)
+    usuario = models.OneToOneField(User,on_delete=models.CASCADE)
 
     def nombre_completo(self):
         return f"{self.nombre} {self.apellido}"
