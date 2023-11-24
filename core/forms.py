@@ -59,7 +59,22 @@ class EventoForm(forms.Form):
     participantes = forms.ModelMultipleChoiceField(queryset=Grupo.objects.all())
 
 
-class PersonaForm(forms.ModelForm):
+# class PersonaForm(forms.ModelForm):
+#     class Meta:
+#         model = Persona
+#         fields = '__all__'
+
+class PersonaForm(forms.Form):
+    nombre = forms.CharField(label='Nombre:', required=True)
+    apellido = forms.CharField(label='Apellido:', required=True)
+    mail = forms.EmailField(label='Email', required=True)
+    telefono = forms.CharField(label='Teléfono',required=False)
+    nombre_usuario = forms.CharField(label='Usuario', required=True)
+    contraseña = forms.CharField(label='Contraseña', required=True, widget=forms.PasswordInput)
+    contraseña_control = forms.CharField(label='Confirmación Contraseña', required=True, widget=forms.PasswordInput)
+
+
+class GrupoForm(forms.ModelForm):
     class Meta:
-        model = Persona
+        model = Grupo
         fields = '__all__'

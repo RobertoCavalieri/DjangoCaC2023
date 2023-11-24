@@ -9,6 +9,12 @@ html{
     font-family: 'Lato', sans-serif;
 }
 
+/* body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+} */
+
 .header h1{
     font-size: 24px;
 }
@@ -37,6 +43,34 @@ html{
     border-radius: 50%; background-color: rgba(251, 249, 247, 0.269);
 }
 
+.header .actions {
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+header .actions a {
+    text-decoration: none;
+    display: inline-block;
+    background-color: darkturquoise;
+    padding: 15px;
+    border-radius: 5px;
+
+    margin: 0 15px;
+
+    color: white;
+
+    transition: 0.2s all;
+}
+
+header .actions a.logout {
+    background-color: red;
+}
+
+header .actions a:hover {
+    background-color: white;
+    color: black;
+}
 
 #mostrar-notificacion {
     background-color: #007BFF;
@@ -119,6 +153,10 @@ html{
     opacity:0.8;
     border-radius: 20px;
 }
+
+/* main {
+    flex: 1;
+} */
 
 footer {
     background-color: rgb(97, 94, 94);
