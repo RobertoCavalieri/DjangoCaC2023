@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/grupo_confirm_detete.css' %}">
+{% endblock%}
+
+
+{% block title %}Eliminación de grupo{% endblock %}
+{% block section_title %} Eliminación de grupo {% endblock %}
+{% block content %}
+<div class="center">
+	<form method="post" class="card">
+		{% csrf_token %}
+		<h2>Eliminar Grupo</h2>
+		<p>¿Esta seguro/a de eliminar el grupo "{{grupo}}"?</p>
+		<p class="form-buttons">
+			<input type="submit" class="btn btn-primary" value="Eliminar">
+			<a href="{% url 'grupos_listado'%}" class="btn btn-outline">Cancelar</a>
+		</p>
+	</form>
+</div>
+
+{% endblock %}

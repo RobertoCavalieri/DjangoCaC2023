@@ -2,9 +2,14 @@
     margin: 25px auto;
 }
 
-.tabla td, th{
+.tabla td{
     border: 1px solid #dddddd;
     text-align: left;
+    padding: 8px;
+}
+.tabla th{
+    border: 1px solid #dddddd;
+    text-align: center;
     padding: 8px;
 }
 

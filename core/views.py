@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.urls import reverse
-from django.views.generic import ListView, CreateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
 from datetime import datetime
@@ -56,7 +56,6 @@ def alta_evento(request):
             nuevo_evento = Evento(
                 nombre = formulario.cleaned_data['nombre'],
             #El organizador es la persona que esta dando de alta el evento
-            #por ahora lo dejamos con cualquier persona.
                 organizador = request.user.persona,
                 descripcion = formulario.cleaned_data['descripcion'],
                 inicio = formulario.cleaned_data['fecha_inicio'],
@@ -86,18 +85,11 @@ class EventoListView(LoginRequiredMixin, ListView):
         return  evento_participante.union(evento_organizador)
 
 
-# class PersonaCreateView(PermissionRequiredMixin, CreateView):
-#     permission_required = 'core.add_persona'
-#     model = Persona
-#     template_name = 'core/alta_persona.html'
-#     success_url = 'listado'
-#     fields = '__all__'
-
-
 class PersonaListView(LoginRequiredMixin, ListView):
     model = Persona
     context_object_name = 'listado_personas'
     template_name = 'core/personas_listado.html'
+
 
 
 class GrupoCreateView(LoginRequiredMixin, CreateView):
@@ -111,6 +103,33 @@ class GrupoListView(LoginRequiredMixin, ListView):
     model = Grupo
     context_object_name = 'listado_grupos'
     template_name = 'core/grupos_listado.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='administrador').exists() or self.request.user.is_superuser:
+            return super().get_queryset()
+        else:
+            return Grupo.objects.filter(miembros = self.request.user.persona)
+
+
+class GrupoDeleteView(LoginRequiredMixin, DeleteView):
+    model = Grupo
+    context_object_name = 'grupo'
+    success_url = reverse_lazy('grupos_listado')
+
+    def form_valid(self, form):
+        messages.success(self.request, "El grupo fue eliminado.")
+        return super(GrupoDeleteView,self).form_valid(form)
+
+
+class GrupoUpdateView(LoginRequiredMixin, UpdateView):
+    model = Grupo
+    template_name = 'core/grupos_modificar.html'
+    fields = '__all__'
+    success_url = reverse_lazy('grupos_listado')
+
+    def form_valid(self, form):
+        messages.success(self.request, "El grupo fue modificado exitosamente.")
+        return super(GrupoUpdateView,self).form_valid(form)
 
 
 @login_required
