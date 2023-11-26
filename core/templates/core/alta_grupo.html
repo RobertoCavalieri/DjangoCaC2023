@@ -12,7 +12,8 @@
     <form method="post" action="{% url 'grupos_alta' %}">
         {% csrf_token %}
         {{ form.as_div }}
-        <input type="submit">
+        <input type="submit" value="Guardar">
+        <a href="{% url 'grupos_listado'%}" class="btn btn-outline">Cancelar</a>
     </form>
 {% endblock %}
 

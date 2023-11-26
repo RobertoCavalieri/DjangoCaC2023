@@ -13,18 +13,21 @@
         <tr>
             <th>Nombre</th>
             <th>Detalle</th>
+            <th colspan="2">Acciones</th>
         </tr>
         {% for grupo in listado_grupos %}
             <tr>
                 <td>{{ grupo.nombre | title }}</td>
                 <td><a href="{% url 'grupos_detalle' grupo.id %}">Integrantes</a></td>
+                <td><a href="{% url 'grupos_modificar' grupo.id %}" title="Modificar grupo"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td><a href="{% url 'grupos_eliminar' grupo.id %}" title="Eliminar grupo"><i class="fa-solid fa-trash"></i></a></td>
             </tr>
         {% empty %}
             <p>Sin grupos registrados</p>
         {% endfor %}
         <tfoot>
             <tr>
-                <td colspan="2">
+                <td colspan="4">
                     {% if listado_grupos.count > 0 %}
                         <p>Cantidad de grupos registrados: {{listado_grupos.count}}</p>
                     {% else %}
@@ -35,4 +38,6 @@
         </tfoot>
     </table>
 {% endblock %}
-
+{% block extra_script %}
+    <script src="https://kit.fontawesome.com/7e4aa89f27.js" crossorigin="anonymous"></script>
+{% endblock %}
