@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tiempos Libres</title>
+</head>
+<body>
+    <h1>Tiempos Libres de {{ persona.nombre_completo }}</h1>
+
+    {% if tiempos_libres %}
+        <ul>
+            {% for intervalo_libre in tiempos_libres %}
+                <li>{{ intervalo_libre.0 }} - {{ intervalo_libre.1 }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay tiempos libres disponibles en el rango especificado.</p>
+    {% endif %}
+</body>
+</html>
