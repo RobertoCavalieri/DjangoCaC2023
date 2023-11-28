@@ -1,0 +1,67 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/tiempoLibre.css' %}">
+{% endblock%}
+
+{% block title %}Tiempos Libres{% endblock %}
+{% block section_title %}Tiempos Libres de {{ user.persona.nombre_completo }}{% endblock %}
+{% block content %}
+    <div class='contenedor'>
+        <div id="listado">
+            <h3> Listado de tiempos libres para los proximos 7 días.</h3>
+            {% if tiempos_libres %}
+                <ul>
+                    {% for intervalo_libre in tiempos_libres %}
+                        <li>{{ intervalo_libre.0 }} - {{ intervalo_libre.1 }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No hay tiempos libres disponibles en el rango especificado.</p>
+            {% endif %}
+        </div>
+        <div>
+            <div id="calendar"></div>
+        </div>
+        <a href="{% url 'index'%}" class="btn-volver">Volver</a>
+    </div>
+   
+{% endblock %}
+
+{% block extra_script %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            let calendarUI = document.getElementById('calendar');
+            let calendar = new FullCalendar.Calendar(calendarUI,{
+                    headerToolbar: {
+                        left: 'dayGridMonth,timeGridWeek,timeGridDay',
+                        center: 'title',
+                        right: 'prev,next'
+                    },
+                    buttonText: {
+                        today:    'Hoy',
+                        month:    'Mes',
+                        week:     'Semana',
+                        day:      'Dia',
+                        list:     'Lista'
+                    },
+                    //navLinks: true, // can click day/week names to navigate views
+                    dayMaxEvents: true, // allow "more" link when too many events
+                    events: [
+                        {% for intervalo_libre in tiempos_libres %}
+                            {
+                                title: 'Tiempo Libre',
+                                description: '',
+                                start: '{{ intervalo_libre.0.isoformat }}',
+                                end: '{{ intervalo_libre.1.isoformat }}',
+                                backgroundColor: 'green',
+                            },
+                        {% endfor %}
+                    ]
+            });
+            calendar.render();
+            calendar.setOption('locale','es');
+        });
+    </script>
+{% endblock %}

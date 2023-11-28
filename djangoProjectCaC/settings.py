@@ -13,11 +13,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 import environ
+
 # import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 env = environ.Env()
 
@@ -31,12 +31,10 @@ environ.Env.read_env()
 # SECRET_KEY = 'django-insecure-6e!wm%17*=b)a#k5^w0%&t&(r!ehkfdt8lga537g@y^x6aq+2l'ç
 SECRET_KEY = env("SECRET_KEY")
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -61,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#ROOT_URLCONF = 'core.urls'
+# ROOT_URLCONF = 'core.urls'
 ROOT_URLCONF = 'djangoProjectCaC.urls'
 
 TEMPLATES = [
@@ -82,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djangoProjectCaC.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -94,16 +91,15 @@ WSGI_APPLICATION = 'djangoProjectCaC.wsgi.application'
 # }
 
 DATABASES = {
-     "default": {
+    "default": {
         "ENGINE": 'django.db.backends.postgresql_psycopg2',
         "NAME": env("DATABASE_NAME"),
         "USER": env("DATABASE_USER"),
         "PASSWORD": env("DATABASE_PASSWORD"),
         "HOST": env("DATABASE_HOST"),
         "PORT": env("DATABASE_PORT"),
-     }
- }
-
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -123,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -134,7 +129,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

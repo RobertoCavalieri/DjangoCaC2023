@@ -120,7 +120,7 @@ __pypackages__/
 # *.sage.py
 
 # Environments
-.env
+djangoProjectCaC/.env
 .venv
 env/
 venv/

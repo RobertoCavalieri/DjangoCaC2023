@@ -104,7 +104,15 @@ header .actions a:hover {
     cursor: pointer;
 }
 
+#mostrar-tiempo-libre {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 8px;
+    font-size: 14px;
+    cursor: pointer;
 
+}
 
 .nav{
     background-color: rgba(13, 13, 13, 0.932);
