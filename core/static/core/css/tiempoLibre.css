@@ -1,0 +1,25 @@
+.contenedor {
+    margin: 25px;
+    display:flex;
+    flex: 2;
+    align-content: space-between;
+}
+
+#listado{
+    margin: 25px 50px;
+}
+
+#calendario{
+    margin: 50px;
+}
+
+.btn-volver {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    align-self: center;
+    margin: 25px;
+}

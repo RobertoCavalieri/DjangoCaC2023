@@ -4,6 +4,9 @@
 {% block notif %}
 
 <button id="mostrar-notificacion">Mostrar Notificación</button>
+{% if user.is_authenticated %}
+    <a id="mostrar-tiempo-libre" href="{% url 'tiempos_libres' user.persona.id %}">Ver Tiempos Libres</a>
+{% endif %}
 
 <div id="notificacion" class="oculto">
     <div class="contenido">
